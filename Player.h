@@ -6,6 +6,8 @@ class Player :public Actor {
 
 public:
 
+	
+
 	//================
 	// 包含
 	//================
@@ -18,6 +20,11 @@ public:
 	// ゲッターロボ
 	Vector2 GetPos()override { return pos_; }
 	float GetRadius()override { return radius_; }
+	int GetIsAlive() { return isAlive_; }
+	void SetIsAlive(int isAlive) { this->isAlive_ = isAlive; }
+
+	// コンストラクタ使ってなかったから生存フラグをやっちゃおう
+	Player(int isAlive);
 
 	/// <summary>
 	/// 初期化関数
@@ -28,6 +35,7 @@ public:
 	/// <param name="speedY">縦の移動速度</param>
 	/// <param name="radius">オブジェクトの半径</param>
 	void Initialisation(float posX, float posY, float speedX, float speedY, float radius) override;
+
 
 	/// <summary>
 	/// 更新関数
@@ -60,6 +68,9 @@ public:
 	~Player();
 
 private:
+
+	// 生存フラグ
+	int isAlive_;
 
 	//コントローラー操作用のメンバ変数
 	int leftStick0X_ = 0;

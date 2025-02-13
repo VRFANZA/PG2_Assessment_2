@@ -1,6 +1,10 @@
 ﻿#include "Player.h"
 #include "Novice.h"
 
+Player::Player(int isAlive){
+	isAlive_ = isAlive;
+}
+
 void Player::Initialisation(float posX, float posY, float speedX, float speedY, float radius){
 	pos_ = { posX,posY };
 	speed_ = { speedX,speedY };
@@ -12,11 +16,13 @@ void Player::Initialisation(float posX, float posY, float speedX, float speedY, 
 }
 
 void Player::Update(const char* keys, const char* preKeys){
-	Move(keys);
-	Shoot(keys, preKeys);
+	if (isAlive_) {
+		Move(keys);
+		Shoot(keys, preKeys);
 
-	if (bullet_->isShoot_) {
-		bullet_->Update();
+		if (bullet_->isShoot_) {
+			bullet_->Update();
+		}
 	}
 }
 
